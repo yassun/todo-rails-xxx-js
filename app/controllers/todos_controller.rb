@@ -5,12 +5,12 @@ class TodosController < ApplicationController
   def index
     @todos = Todo.all
 
-    render json: @todos
+    render json: @todos.map { |todo| TodoSerializer.new(todo)}
   end
 
   # GET /todos/1
   def show
-    render json: @todo
+    render json: TodoSerializer.new(@todo)
   end
 
   # POST /todos
