@@ -17,7 +17,7 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
 
-    if @todo.save
+    if Todo.count < 100 && @todo.save
       render json: @todo, status: :created, location: @todo
     else
       render json: @todo.errors, status: :unprocessable_entity
