@@ -8,6 +8,7 @@ import { HttpModule }     from '@angular/http';
 import { AppComponent }       from './app.component';
 import { TodoComponent }      from './todo.component';
 import { TodoListComponent }  from './todo-list.component';
+import { HeaderComponent }  from './header.component';
 
 import { TodoService }        from './todo.service';
 import { AppRoutingModule }   from './app-routing.module';
@@ -21,7 +22,8 @@ import { AppRoutingModule }   from './app-routing.module';
   declarations: [
     AppComponent,
     TodoComponent,
-    TodoListComponent
+    TodoListComponent,
+    HeaderComponent
   ],
   providers: [ TodoService ],
   bootstrap: [ AppComponent ]
