@@ -5,12 +5,12 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule }     from '@angular/http';
 
-import { AppComponent }       from './app.component';
-import { TodoComponent }      from './todo.component';
-import { TodoListComponent }  from './todo-list.component';
-import { HeaderComponent }  from './header.component';
+import { AppComponent }       from './components/app.component';
+import { TodoComponent }      from './components/todo.component';
+import { TodoListComponent }  from './components/todo-list.component';
+import { HeaderComponent }    from './components/header.component';
 
-import { TodoService }        from './todo.service';
+import { TodoService }        from './services/todo.service';
 import { AppRoutingModule }   from './app-routing.module';
 @NgModule({
   imports: [

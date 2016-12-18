@@ -1,13 +1,29 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "module": "system",
+    "moduleResolution": "node",
+    "outDir": "public/dist/js",
+    "sourceMap": true,
+    "target": "ES5",
     "lib": [ "es2015", "dom" ],
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "filesGlob": [
+    "app/**/*.ts"
+  ],
+  "files": [
+    "app/components/app.component.ts",
+    "app/components/header.component.ts",
+    "app/components/todo-list.component.ts",
+    "app/components/todo.component.ts",
+    "app/services/todo.service.ts",
+    "app/models/todo.ts",
+    "app/main.ts"
+  ]
 }
