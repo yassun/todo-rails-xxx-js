@@ -18,17 +18,21 @@ const tscConfig = require('./tsconfig.json');
 
 // Clean the js distribution directory
 gulp.task('clean:dist:js', function () {
-  return del('public/dist/js/*');
+  return del('/public/angular2/dist/js/*');
 });
 
 // Clean the css distribution directory
 gulp.task('clean:dist:css', function () {
-  return del('public/dist/css/*');
+  return del('public/angular2/dist/css/*');
 });
 
 // Clean library directory
 gulp.task('clean:lib', function () {
-  return del('public/lib/**/*');
+  return del('public/angular2/lib/**/*');
+});
+
+gulp.task('clean:rails', function () {
+  return del('../../public/angular2/angular2/**/*', {force: true});
 });
 
 // Lint Typescript
@@ -52,15 +56,15 @@ gulp.task('compile:ts', function () {
     .pipe(sourcemaps.init())
     .pipe(tsc(tscConfig.compilerOptions))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('public/dist/js'));
+    .pipe(gulp.dest('public/angular2/dist/js'));
 });
 
 // Generate systemjs-based builds
 gulp.task('bundle:js', function() {
-  var builder = new sysBuilder('public', './system.config.js');
-  return builder.buildStatic('app', 'public/dist/js/app.min.js', { minify: true, sourceMaps: true })
+  var builder = new sysBuilder('public/angular2', './system.config.js');
+  return builder.buildStatic('app', 'public/angular2/dist/js/app.min.js', { minify: true, sourceMaps: true })
     .then(function () {
-      //return del(['public/dist/js/**/*', '!public/dist/js/app.min.js']);
+      //return del(['public/angular2/dist/js/**/*', '!public/angular2/dist/js/app.min.js']);
     })
     .catch(function(err) {
       console.error('>>> [systemjs-builder] Bundling failed'.bold.green, err);
@@ -70,9 +74,9 @@ gulp.task('bundle:js', function() {
 // Minify JS bundle
 gulp.task('minify:js', function() {
   return gulp
-    .src('public/dist/js/app.min.js')
+    .src('public/angular2/dist/js/app.min.js')
     .pipe(uglify())
-    .pipe(gulp.dest('public/dist/js'));
+    .pipe(gulp.dest('public/angular2/dist/js'));
 });
 
 // Lint Sass
@@ -99,10 +103,10 @@ gulp.task('compile:sass', function () {
       }}))
     .pipe(sourcemaps.init())
     .pipe(sass({ errLogToConsole: true }))
-    .pipe(concat('styles.css'))
+    .pipe(concat('styles.min.css'))
     .pipe(cleanCSS())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('public/dist/css/'));
+    .pipe(gulp.dest('public/angular2/dist/css/'));
 
   gulp
     .src('app/components/*.scss')
@@ -115,28 +119,28 @@ gulp.task('compile:sass', function () {
     .pipe(sass({ errLogToConsole: true }))
     .pipe(cleanCSS())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('public/dist/css/components'));
+    .pipe(gulp.dest('public/angular2/dist/css/components'));
 });
 
 // Concat and minify CSS
 gulp.task('minify:css', function() {
   gulp
-    .src('public/dist/css/*.css')
+    .src('public/angular2/dist/css/*.css')
     .pipe(concat('styles.min.css'))
     .pipe(cleanCSS())
-    .pipe(gulp.dest('public/dist/css/'));
+    .pipe(gulp.dest('public/angular2/dist/css/'));
 
   // minify component css files
   gulp
-    .src('public/dist/cs/components/*.css')
+    .src('public/angular2/dist/cs/components/*.css')
     .pipe(cleanCSS())
-    .pipe(gulp.dest('public/dist/css/components'));
+    .pipe(gulp.dest('public/angular2/dist/css/components'));
 });
 
 // Copy dependencies
 gulp.task('copy:libs', function() {
   gulp.src(['node_modules/rxjs/**/*'])
-    .pipe(gulp.dest('public/lib/js/rxjs'));
+    .pipe(gulp.dest('public/angular2/lib/js/rxjs'));
 
   // concatenate non-angular2 libs, shims & systemjs-config
   gulp.src([
@@ -148,31 +152,23 @@ gulp.task('copy:libs', function() {
   ])
     .pipe(concat('vendors.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('public/lib/js'));
+    .pipe(gulp.dest('public/angular2/lib/js'));
 
   // copy source maps
   gulp.src([
     'node_modules/reflect-metadata/Reflect.js.map',
     'node_modules/systemjs/dist/system-polyfills.js.map'
-  ]).pipe(gulp.dest('public/lib/js'));
+  ]).pipe(gulp.dest('public/angular2/lib/js'));
 
   return gulp.src(['node_modules/@angular/**/*'])
-    .pipe(gulp.dest('public/lib/js/@angular'));
+    .pipe(gulp.dest('public/angular2/lib/js/@angular'));
 });
 
-// UNUSED
-// Copy static assets
-gulp.task('copy:assets', function() {
-  return gulp.src(
-    [
-      '*.json',
-      '*.html',
-      '*.css',
-      '!*.ts',
-      '!*.scss'
-    ],
-    { base : 'src/**' })
-    .pipe(gulp.dest('public/dist'))
+gulp.task('copy:rails', function() {
+  gulp.src( 'app/html/*.html'  ).pipe( gulp.dest( '../../public/angular2') );
+  gulp.src( 'public/angular2/dist/css/**'  ).pipe( gulp.dest( '../../public/angular2/dist/css' ) );
+  gulp.src( 'public/angular2/dist/js/**'  ).pipe( gulp.dest( '../../public/angular2/dist/js' ) );
+  return gulp.src( 'public/angular2/lib/js/**'  ).pipe( gulp.dest( '../../public/angular2/lib/js' ) );
 });
 
 // Watch src files for changes, then trigger recompilation
@@ -197,13 +193,17 @@ gulp.task('copy', function(callback) {
   runSequence('clean:lib', 'copy:libs', callback);
 });
 gulp.task('scripts', function(callback) {
-  runSequence(['lint:ts', 'clean:dist:js'], 'compile:ts', 'bundle:js', 'minify:js', callback);
+  runSequence([ 'clean:dist:js'], 'compile:ts', 'bundle:js', 'minify:js', callback);
 });
 gulp.task('styles', function(callback) {
   runSequence(['lint:sass', 'clean:dist:css'], ['compile:sass', 'minify:css'], callback);
 });
 gulp.task('build', function(callback) {
   runSequence('copy', 'scripts', 'styles', callback);
+});
+
+gulp.task('deploy', function(callback) {
+  runSequence('clean:rails', 'copy:rails', callback);
 });
 
 gulp.task('default', function(callback) {

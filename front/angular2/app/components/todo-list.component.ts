@@ -6,7 +6,7 @@ import { htmlTemplate } from './todo-list.component.html';
 
 @Component({
   selector: 'todo-list',
-  styleUrls: ['dist/css/components/todo-list.component.css'],
+  styleUrls: ['angular2/dist/css/components/todo-list.component.css'],
   template: htmlTemplate
 })
 export class TodoListComponent {
