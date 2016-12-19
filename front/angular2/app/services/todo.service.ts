@@ -7,7 +7,7 @@ import { Todo } from '../models/todo';
 @Injectable()
 export class TodoService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private todosUrl = 'http://127.0.0.1:3000/todos';
+  private todosUrl = '/todos';
   constructor(private http: Http) { }
 
   getTodos(): Promise<Todo[]> {
