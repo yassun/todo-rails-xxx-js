@@ -165,10 +165,10 @@ gulp.task('copy:libs', function() {
 });
 
 gulp.task('copy:rails', function() {
-  gulp.src( 'app/html/*.html'  ).pipe( gulp.dest( '../../public/angular2') );
+  gulp.src( 'app/html/index.html'  ).pipe( gulp.dest( '../../public/angular2') );
   gulp.src( 'public/angular2/dist/css/**'  ).pipe( gulp.dest( '../../public/angular2/dist/css' ) );
-  gulp.src( 'public/angular2/dist/js/**'  ).pipe( gulp.dest( '../../public/angular2/dist/js' ) );
-  return gulp.src( 'public/angular2/lib/js/**'  ).pipe( gulp.dest( '../../public/angular2/lib/js' ) );
+  gulp.src( 'public/angular2/dist/js/app.min.js'  ).pipe( gulp.dest( '../../public/angular2/dist/js' ) );
+  return gulp.src( 'public/angular2/lib/js/vendors.min.js'  ).pipe( gulp.dest( '../../public/angular2/lib/js' ) );
 });
 
 // Watch src files for changes, then trigger recompilation
