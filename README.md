@@ -1,24 +1,12 @@
-# README
+# Todo samples by Rails 5 (API mode) and JS frameworks.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## About
+* Demo hosted on [Heroku](https://tour-of-heroes-typescript.herokuapp.com/)
+    (Using free dynos which sleep during inactivity, so initial load may be slow)
 
-Things you may want to cover:
+* Ruby version 2.2.3 / Ruby on Rails version 5.0.0 
 
-* Ruby version
+## Angular2
+* https://todo-rails-xxx-js.herokuapp.com/angular2/
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Angular 2 Code in Typescript 2.0 with SystemJS for module loading
