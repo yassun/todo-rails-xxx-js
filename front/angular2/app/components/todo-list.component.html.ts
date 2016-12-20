@@ -16,5 +16,6 @@ export const htmlTemplate = `
         </a>
       </div>
     </div>
-  </div>
+    <app-footer></app-footer>
+</div>
 `;

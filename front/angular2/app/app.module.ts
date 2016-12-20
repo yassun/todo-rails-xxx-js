@@ -9,6 +9,8 @@ import { AppComponent }       from './components/app.component';
 import { TodoComponent }      from './components/todo.component';
 import { TodoListComponent }  from './components/todo-list.component';
 import { HeaderComponent }    from './components/header.component';
+import { FooterComponent }    from './components/footer.component';
+
 import { GithubRibbonComponent }    from './components/github-ribbon.component';
 
 import { TodoService }        from './services/todo.service';
@@ -25,6 +27,7 @@ import { AppRoutingModule }   from './app-routing.module';
     TodoComponent,
     TodoListComponent,
     HeaderComponent,
+    FooterComponent,
     GithubRibbonComponent
   ],
   providers: [ TodoService ],
