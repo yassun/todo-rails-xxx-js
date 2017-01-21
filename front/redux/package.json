@@ -29,7 +29,7 @@
   "scripts": {
     "start": "npm run server & npm run watchify",
     "build": "npm run browserify",
-    "server": "browser-sync start -s -f 'public/redux/index.html, public/redux/bundle.js' --no-notify --no-open --no-ghost-mode",
+    "server": "browser-sync start -s -f 'public/redux/index.html, public/redux/bundle.js' --no-notify --no-open --no-ghost-mode --port 8080",
     "browserify": "browserify -e app/entry.js -o public/redux/bundle.js -v",
     "watchify": "watchify -e app/entry.js -o public/redux/bundle.js -v -w"
   }
