@@ -1,7 +1,7 @@
 # Todo samples by Rails 5 (API mode) and JS frameworks.
 
 ## About
-* Demo hosted on [Heroku](https://tour-of-heroes-typescript.herokuapp.com/)
+* Demo hosted on [Heroku](https://todo-rails-xxx-js.herokuapp.com/angular2/)
     (Using free dynos which sleep during inactivity, so initial load may be slow)
 
 * Ruby version 2.2.3 / Ruby on Rails version 5.0.0 
