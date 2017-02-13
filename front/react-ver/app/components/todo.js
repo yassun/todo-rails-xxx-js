@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component ,PropTypes } from 'react'
 
 export default class Todo extends Component {
   render() {
@@ -9,5 +9,9 @@ export default class Todo extends Component {
       </li>
     );
   }
+}
+Todo.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string
 }
 
