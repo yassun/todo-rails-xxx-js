@@ -1,19 +1,18 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import Todos from './components/todos'
+import React from 'react'
+import { render } from 'react-dom'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
-class IndexPage extends Component {
-  render() {
-    return (
-      <div>
-        <h2>List of Todos</h2>
-        <Todos />
-      </div>
-    )
-  }
-}
+import IndexPage from './pages/index'
+import TodoPage  from './pages/todo'
 
-ReactDOM.render(
-  <IndexPage />,
+render((
+  <Router history={hashHistory}>
+    <Route path="/" >
+      <IndexRoute component={IndexPage}/>
+      <Route path="/todos/:id" component={TodoPage}/>
+    </Route>
+  </Router>
+  ),
   document.getElementById('app')
 )
+
