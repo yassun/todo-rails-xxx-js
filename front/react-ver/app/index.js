@@ -3,12 +3,14 @@ import { render } from 'react-dom'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
 import IndexPage from './pages/index'
-import TodoPage  from './pages/todo'
+import TodoPage  from './pages/edit'
+import NewPage   from './pages/new'
 
 render((
   <Router history={hashHistory}>
     <Route path="/" >
       <IndexRoute component={IndexPage}/>
+      <Route path="/todos/new" component={NewPage}/>
       <Route path="/todos/:id" component={TodoPage}/>
     </Route>
   </Router>
