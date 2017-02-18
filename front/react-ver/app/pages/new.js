@@ -10,8 +10,8 @@ export default class NewPage extends Component {
   }
   create() {
     axios.post('http://localhost:3000/todos',
-              {todo: this.state.todo}).then((response) => {
-      this.props.history.push("/")
+              this.state.todo).then((response) => {
+      this.props.router.push("/")
     }).catch((response) => {
       console.log(response)
     })
@@ -23,7 +23,9 @@ export default class NewPage extends Component {
     return(
       <div>
         <h2>New</h2>
-        <TodoForm todo={this.state.todo} onChange={this.formChange.bind(this)} onSubmit={this.create.bind(this)} />
+        <TodoForm todo={this.state.todo} onChange={this.formChange.bind(this)}>
+          <button onClick={this.create.bind(this)}> 登録 </button>
+        </TodoForm>
         <Link to="/">Back</Link>
       </div>
     )

@@ -27,7 +27,7 @@ export default class IndexPage extends Component {
         <h2>List of Todos</h2>
         <Todos todos={this.state.todos}/>
         <br />
-        <Link to="/new">New Todo</Link>
+        <Link to="/todos/new">New Todo</Link>
       </div>
     )
   }
