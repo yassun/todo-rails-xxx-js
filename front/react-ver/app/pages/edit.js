@@ -6,7 +6,7 @@ import TodoForm   from '../components/todoForm'
 export default class EditPage extends Component {
   constructor(props) {
     super(props)
-    this.state = {todo: []}
+    this.state = {todo: {}}
   }
   componentDidMount() {
     this.getTodo(this.props.params.id)
@@ -22,9 +22,16 @@ export default class EditPage extends Component {
     })
   }
   update() {
-    axios.put("http://localhost:3000/" + `/todos/${this.props.params.id}`,
-            {todo: this.state.todo}).then((response) => {
-      this.props.history.push("/")
+    axios.put("http://localhost:3000/" + `todos/${this.props.params.id}`,
+            this.state.todo).then((response) => {
+      this.props.router.push("/")
+    }).catch((response) => {
+      console.log(response)
+    })
+  }
+  delete(){
+    axios.delete("http://localhost:3000/" + `todos/${this.props.params.id}`).then(() => {
+      this.props.router.push("/")
     }).catch((response) => {
       console.log(response)
     })
@@ -36,13 +43,16 @@ export default class EditPage extends Component {
     return(
       <div>
         <h2>Update</h2>
-        <TodoForm todo={this.state.todo} onChange={this.formChange.bind(this)} onSubmit={this.update.bind(this)} />
+        <TodoForm todo={this.state.todo} onChange={this.formChange.bind(this)} >
+          <button onClick={this.update.bind(this)}> 更新 </button>
+          <button onClick={this.delete.bind(this)}> 削除 </button>
+        </TodoForm>
         <Link to="/">Back</Link>
       </div>
     )
   }
 }
-NewPage.propTypes = {
+EditPage.propTypes = {
   params: PropTypes.object,
   history: PropTypes.object
 }
