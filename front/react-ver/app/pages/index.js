@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import axios from 'axios'
+import AppHeader from '../components/app-header'
+import AddTodo from '../components/add-todo'
 import Todos from '../components/todos'
+import AppFooter from '../components/app-footer'
 
 export default class IndexPage extends Component {
   constructor(props) {
@@ -23,11 +25,11 @@ export default class IndexPage extends Component {
   }
   render() {
     return(
-      <div>
-        <h2>List of Todos</h2>
+      <div className="container">
+        <AppHeader title="Todo Sample" subTitle="Rails5 + ES6 + React + react-router + axios + CSS Modules" />
+        <AddTodo />
         <Todos todos={this.state.todos}/>
-        <br />
-        <Link to="/todos/new">New Todo</Link>
+        <AppFooter />
       </div>
     )
   }
