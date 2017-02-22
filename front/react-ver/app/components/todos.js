@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Todo from './todo'
-import { Link } from 'react-router'
+import styles from '../css/todos.css'
 
 export default class Todos extends React.Component {
   render() {
+    var todosClassNames = [
+      styles.todos,
+      'row'
+    ].join(' ');
+
     return (
-      <ul>
-          {this.props.todos.map(todo =>
-            <Link key = { todo.id } to={`/todos/${todo.id}`}>
-              <Todo
-                title = { todo.title }
-                description = { todo.description }
-               />
-            </Link>
-          )}
-      </ul>
+      <div className={todosClassNames}>
+        {this.props.todos.map(todo =>
+           <Todo key = { todo.id } todo = { todo }/>
+        )}
+      </div>
     );
   }
 }
