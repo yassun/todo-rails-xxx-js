@@ -1,0 +1,17 @@
+.todo {
+  min-height: 130px;
+}
+.todoTitle,
+.todoDescription {
+  overflow: hidden;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.todoTitle {
+  line-height: 30px;
+  font-size: 24px;
+  font-weight: 300;
+}
+
