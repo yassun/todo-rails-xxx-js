@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import axios from 'axios'
-import TodoForm   from '../components/todoForm'
+import TodoForm   from '../components/todo-form'
 
 export default class EditPage extends Component {
   constructor(props) {
@@ -15,14 +15,14 @@ export default class EditPage extends Component {
     this.getTodo(nextProps.params.id)
   }
   getTodo(id) {
-    axios.get("http://localhost:3000/" + `todos/${id}`).then((response) => {
+    axios.get("/" + `todos/${id}`).then((response) => {
       this.setState({todo: response.data})
     }).catch((response) => {
       console.log(response)
     })
   }
   update() {
-    axios.put("http://localhost:3000/" + `todos/${this.props.params.id}`,
+    axios.put("/" + `todos/${this.props.params.id}`,
             this.state.todo).then((response) => {
       this.props.router.push("/")
     }).catch((response) => {
@@ -30,7 +30,7 @@ export default class EditPage extends Component {
     })
   }
   delete(){
-    axios.delete("http://localhost:3000/" + `todos/${this.props.params.id}`).then(() => {
+    axios.delete("/" + `todos/${this.props.params.id}`).then(() => {
       this.props.router.push("/")
     }).catch((response) => {
       console.log(response)
@@ -40,14 +40,32 @@ export default class EditPage extends Component {
     this.setState({todo: todo})
   }
   render() {
+    var addBtnClassNames = [
+      'btn-floating','waves-effect',
+      'waves-light','green'
+    ].join(' ');
+
+    var delBtnClassNames = [
+      'btn-floating', 'waves-effect',
+      'waves-light', 'red'
+    ].join(' ');
+
     return(
-      <div>
-        <h2>Update</h2>
-        <TodoForm todo={this.state.todo} onChange={this.formChange.bind(this)} >
-          <button onClick={this.update.bind(this)}> 更新 </button>
-          <button onClick={this.delete.bind(this)}> 削除 </button>
-        </TodoForm>
-        <Link to="/">Back</Link>
+      <div className="container">
+        <div className="row">
+          <TodoForm todo={this.state.todo} onChange={this.formChange.bind(this)} >
+            <span>
+              <a onClick={this.update.bind(this)} className={addBtnClassNames}>
+                <i className="material-icons">note_add</i>
+              </a>
+            </span>
+            <span>
+              <a onClick={this.delete.bind(this)} className={delBtnClassNames}>
+                <i className="material-icons">delete</i>
+              </a>
+            </span>
+          </TodoForm>
+        </div>
       </div>
     )
   }
