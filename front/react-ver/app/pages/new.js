@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import axios from 'axios'
-import TodoForm   from '../components/todoForm'
+import TodoForm   from '../components/todo-form'
 
 export default class NewPage extends Component {
   constructor(props) {
@@ -20,13 +20,32 @@ export default class NewPage extends Component {
     this.setState({todo: todo})
   }
   render() {
+    var addBtnClassNames = [
+      'btn-floating','waves-effect',
+      'waves-light','green'
+    ].join(' ');
+
+    var delBtnClassNames = [
+      'btn-floating', 'waves-effect',
+      'waves-light', 'red'
+    ].join(' ');
+
     return(
-      <div>
-        <h2>New</h2>
-        <TodoForm todo={this.state.todo} onChange={this.formChange.bind(this)}>
-          <button onClick={this.create.bind(this)}> 登録 </button>
-        </TodoForm>
-        <Link to="/">Back</Link>
+      <div className="container">
+        <div className="row">
+          <TodoForm todo={this.state.todo} onChange={this.formChange.bind(this)}>
+            <span>
+              <a onClick={this.create.bind(this)} className={addBtnClassNames}>
+                <i className="material-icons">note_add</i>
+              </a>
+            </span>
+            <span>
+              <Link to="/" className={delBtnClassNames}>
+                <i className="material-icons">delete</i>
+              </Link>
+            </span>
+          </TodoForm>
+        </div>
       </div>
     )
   }
