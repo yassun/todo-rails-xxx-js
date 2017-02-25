@@ -10,3 +10,7 @@
 * https://todo-rails-xxx-js.herokuapp.com/angular2/
 
 * Angular 2 Code in Typescript 2.0 with SystemJS for module loading
+
+## React
+* https://todo-rails-xxx-js.herokuapp.com/react/
+* Rails5 + ES6 + React + react-router + axios + CSS Modules
