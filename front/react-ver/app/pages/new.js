@@ -9,7 +9,7 @@ export default class NewPage extends Component {
     this.state = {todo: {}}
   }
   create() {
-    axios.post('http://localhost:3000/todos',
+    axios.post('/todos',
               this.state.todo).then((response) => {
       this.props.router.push("/")
     }).catch((response) => {

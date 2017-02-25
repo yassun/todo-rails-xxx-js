@@ -17,7 +17,7 @@ export default class IndexPage extends Component {
     this.getTodos()
   }
   getTodos() {
-    axios.get('http://localhost:3000/todos').then((response) => {
+    axios.get('/todos').then((response) => {
       this.setState({todos: response.data})
     }).catch((response) => {
       console.log(response)
