@@ -13,6 +13,9 @@
 
 * Angular 2 Code in Typescript 2.0 with SystemJS for module loading
 
+* blog : http://yasun.hatenablog.jp/entry/2016/12/21/235334
+
 ## React
 * https://todo-rails-xxx-js.herokuapp.com/react/
 * Rails5 + ES6 + React + react-router + axios + CSS Modules
+* blog : http://yasun.hatenablog.jp/entry/2017/02/26/142635
